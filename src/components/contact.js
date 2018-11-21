@@ -14,6 +14,7 @@ class Contact extends React.Component {
       name: '',
       email: '',
       message: '',
+      loading: false,
       success: false,
       error: null,
     };
@@ -24,6 +25,8 @@ class Contact extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    // submit netlify form
+    // TODO: Swap this out for a decent email service
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -34,7 +37,7 @@ class Contact extends React.Component {
   };
 
   render() {
-    const { name, email, message, success, error } = this.state;
+    const { name, email, message, success, error, loading } = this.state;
 
     return (
       <ContactWrapper id="contact" className="section">
@@ -75,11 +78,19 @@ class Contact extends React.Component {
                   placeholder="Project Details..."
                   onChange={this.handleChange}
                 />
-                <button type="submit" className="submitBnt">
-                  Send your query
-                </button>
+                <SubmitButton
+                  type="submit"
+                  className="submitBnt"
+                  success={success}
+                  loading={loading}
+                >
+                  {loading
+                    ? 'Sending...'
+                    : success
+                    ? 'Success'
+                    : 'Send message'}
+                </SubmitButton>
                 {error && <div id="simple-msg">Error</div>}
-                {success && <div id="simple-msg">Success</div>}
               </form>
             </div>
           </div>
@@ -90,6 +101,32 @@ class Contact extends React.Component {
 }
 
 export default Contact;
+
+const SubmitButton = styled.button`
+  transition: background-color 0.3s ease;
+  background-color: #3bc492;
+  color: #fff;
+  margin-top: 30px;
+  padding: 15px 30px 15px 30px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  border: 0;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  display: inline-block;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #3d3d3d;
+    color: #fff;
+  }
+
+  /* do not allow multiple submissions */
+  pointer-events: ${(props) =>
+    props.success || props.loading ? 'none' : 'default'};
+`;
 
 const ContactWrapper = styled.section`
   .conForm {
