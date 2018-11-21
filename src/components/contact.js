@@ -1,54 +1,63 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Contact = () => (
-  <ContactWrapper id="contact" className="section">
-    <div className="container">
-      <div className="row">
-        <div className="col-12 conForm">
-          <h5>Get in touch</h5>
-          <p>
-            We are more than happy to talk you through any potential projects or
-            answer any questions.
-          </p>
-          <div id="message" />
-          <form method="post" name="contact" netlify>
-            <input
-              name="name"
-              id="name"
-              type="text"
-              className="col-12"
-              placeholder="Your name..."
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="col-12 noMarr"
-              placeholder="Email Address..."
-            />
-            <textarea
-              name="q5_typeA"
-              id="message"
-              cols=""
-              rows=""
-              className="col-12"
-              placeholder="Project Details..."
-            />
-            <input
-              type="submit"
-              id="submit"
-              name="send"
-              className="submitBnt"
-              value="Send your query"
-            />
-            <div id="simple-msg" />
-          </form>
+class Contact extends React.Component {
+  handleSubmit = () => {
+    alert('working');
+  };
+
+  render() {
+    return (
+      <ContactWrapper id="contact" className="section">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 conForm">
+              <h5>Get in touch</h5>
+              <p>
+                We are more than happy to talk you through any potential
+                projects or answer any questions.
+              </p>
+              <div id="message" />
+              <form
+                method="post"
+                name="contact"
+                netlify
+                action={this.handleSubmit}
+              >
+                <input
+                  name="name"
+                  id="name"
+                  type="text"
+                  className="col-12"
+                  placeholder="Your name..."
+                />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="col-12 noMarr"
+                  placeholder="Email Address..."
+                />
+                <textarea
+                  name="q5_typeA"
+                  id="message"
+                  cols=""
+                  rows=""
+                  className="col-12"
+                  placeholder="Project Details..."
+                />
+                <button type="submit" className="submitBnt">
+                  Send your query
+                </button>
+                <div id="simple-msg" />
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </ContactWrapper>
-);
+      </ContactWrapper>
+    );
+  }
+}
 
 export default Contact;
 
