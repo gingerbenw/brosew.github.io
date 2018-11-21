@@ -22,6 +22,9 @@ class Contact extends React.Component {
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitting form');
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -29,8 +32,6 @@ class Contact extends React.Component {
     })
       .then(() => this.setState({ success: true }))
       .catch((error) => this.setState({ error }));
-
-    e.preventDefault();
   };
 
   render() {
@@ -47,7 +48,7 @@ class Contact extends React.Component {
                 projects or answer any questions.
               </p>
               <div id="message" />
-              <form name="contact" action={this.handleSubmit}>
+              <form action={this.handleSubmit}>
                 <input
                   name="name"
                   type="text"
