@@ -1,12 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
+
 class Contact extends React.Component {
-  handleSubmit = () => {
-    alert('working');
+  constructor(props) {
+    super(props);
+    this.state = { name: '', email: '', message: '' };
+  }
+
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
+  handleSubmit = (e) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...this.state }),
+    })
+      .then(() => alert('Success!'))
+      .catch((error) => alert(error));
+
+    e.preventDefault();
   };
 
   render() {
+    const { name, email, message } = this.state;
+
     return (
       <ContactWrapper id="contact" className="section">
         <div className="container">
@@ -18,33 +41,33 @@ class Contact extends React.Component {
                 projects or answer any questions.
               </p>
               <div id="message" />
-              <form
-                method="post"
-                name="contact"
-                netlify
-                action={this.handleSubmit}
-              >
+              <form action={this.handleSubmit}>
                 <input
                   name="name"
-                  id="name"
                   type="text"
                   className="col-12"
+                  value={name}
                   placeholder="Your name..."
+                  onChange={this.handleChange}
                 />
                 <input
                   type="email"
                   id="email"
                   name="email"
+                  value={email}
                   className="col-12 noMarr"
                   placeholder="Email Address..."
+                  onChange={this.handleChange}
                 />
                 <textarea
                   name="q5_typeA"
                   id="message"
                   cols=""
                   rows=""
+                  value={message}
                   className="col-12"
                   placeholder="Project Details..."
+                  onChange={this.handleChange}
                 />
                 <button type="submit" className="submitBnt">
                   Send your query
