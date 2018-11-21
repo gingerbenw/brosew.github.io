@@ -23,19 +23,18 @@ class Contact extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitting form');
 
-    // fetch('/', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //   body: encode({ 'form-name': 'contact', ...this.state }),
-    // })
-    //   .then(() => this.setState({ success: true }))
-    //   .catch((error) => this.setState({ error }));
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...this.state }),
+    })
+      .then(() => this.setState({ success: true }))
+      .catch((error) => this.setState({ error }));
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { name, email, message, success, error } = this.state;
 
     return (
       <ContactWrapper id="contact" className="section">
@@ -79,7 +78,8 @@ class Contact extends React.Component {
                 <button type="submit" className="submitBnt">
                   Send your query
                 </button>
-                <div id="simple-msg" />
+                {error && <div id="simple-msg">Error</div>}
+                {success && <div id="simple-msg">Success</div>}
               </form>
             </div>
           </div>
