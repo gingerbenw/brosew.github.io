@@ -20,11 +20,12 @@ class Contact extends React.Component {
     };
   }
 
+	// form handlers
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
-
   handleSubmit = (e) => {
     e.preventDefault();
-
+		this.setState({ loading: true });
+		
     // submit netlify form
     // TODO: Swap this out for a decent email service
     fetch('/', {
@@ -32,8 +33,8 @@ class Contact extends React.Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state }),
     })
-      .then(() => this.setState({ success: true }))
-      .catch((error) => this.setState({ error }));
+      .then(() => this.setState({ success: true, loading: false }))
+      .catch((error) => this.setState({ error, loading: false }));
   };
 
   render() {
@@ -116,7 +117,7 @@ const SubmitButton = styled.button`
   -webkit-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
-  text-transform: uppercase; 
+  text-transform: uppercase;
 
   &:hover {
     background-color: #3d3d3d;
