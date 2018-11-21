@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Contact = () => (
   <ContactWrapper id="contact" className="section">
@@ -12,30 +12,24 @@ const Contact = () => (
             answer any questions.
           </p>
           <div id="message" />
-          <form
-            action="https://submit.jotformeu.com/submit/73386496784375/"
-            method="post"
-            name="form_73386496784375"
-            id="73386496784375"
-            acceptCharset="utf-8"
-          >
+          <form method="post" name="contact" netlify>
             <input
-              name="q6_typeA6"
-              id="input_6"
+              name="name"
+              id="name"
               type="text"
               className="col-12"
               placeholder="Your name..."
             />
             <input
               type="email"
-              id="input_4"
-              name="q4_email"
+              id="email"
+              name="email"
               className="col-12 noMarr"
               placeholder="Email Address..."
             />
             <textarea
               name="q5_typeA"
-              id="input_5"
+              id="message"
               cols=""
               rows=""
               className="col-12"
@@ -43,7 +37,7 @@ const Contact = () => (
             />
             <input
               type="submit"
-              id="input_2"
+              id="submit"
               name="send"
               className="submitBnt"
               value="Send your query"
