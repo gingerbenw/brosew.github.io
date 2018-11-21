@@ -10,7 +10,13 @@ const encode = (data) => {
 class Contact extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: '', email: '', message: '' };
+    this.state = {
+      name: '',
+      email: '',
+      message: '',
+      success: false,
+      error: null,
+    };
   }
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -21,8 +27,8 @@ class Contact extends React.Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state }),
     })
-      .then(() => alert('Success!'))
-      .catch((error) => alert(error));
+      .then(() => this.setState({ success: true }))
+      .catch((error) => this.setState({ error }));
 
     e.preventDefault();
   };
@@ -41,7 +47,7 @@ class Contact extends React.Component {
                 projects or answer any questions.
               </p>
               <div id="message" />
-              <form action={this.handleSubmit}>
+              <form name="contact" action={this.handleSubmit}>
                 <input
                   name="name"
                   type="text"
@@ -60,7 +66,7 @@ class Contact extends React.Component {
                   onChange={this.handleChange}
                 />
                 <textarea
-                  name="q5_typeA"
+                  name="message"
                   id="message"
                   cols=""
                   rows=""
