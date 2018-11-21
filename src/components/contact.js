@@ -25,13 +25,13 @@ class Contact extends React.Component {
     e.preventDefault();
     console.log('submitting form');
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'contact', ...this.state }),
-    })
-      .then(() => this.setState({ success: true }))
-      .catch((error) => this.setState({ error }));
+    // fetch('/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: encode({ 'form-name': 'contact', ...this.state }),
+    // })
+    //   .then(() => this.setState({ success: true }))
+    //   .catch((error) => this.setState({ error }));
   };
 
   render() {
