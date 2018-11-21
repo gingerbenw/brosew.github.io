@@ -48,7 +48,7 @@ class Contact extends React.Component {
                 projects or answer any questions.
               </p>
               <div id="message" />
-              <form action={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit}>
                 <input
                   name="name"
                   type="text"
