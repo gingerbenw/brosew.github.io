@@ -116,7 +116,7 @@ const SubmitButton = styled.button`
   -webkit-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
-  text-transform: uppercase;
+  text-transform: uppercase; 
 
   &:hover {
     background-color: #3d3d3d;
