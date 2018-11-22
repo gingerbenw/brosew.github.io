@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Services = () => (
   <ServicesWrapper id="services" className="services service-section">
     <div className="container">
       <div className="row">
         <div className="col-md-4 col-sm-6 services text-center">
-          <span className="icon icon-tools-2" />
+          <i className="fas fa-screwdriver fa-3x" />
           <div className="services-content">
             <h5>Installation service</h5>
             <p>
@@ -16,7 +16,7 @@ const Services = () => (
           </div>
         </div>
         <div className="col-md-4 col-sm-6 services text-center">
-          <span className="icon icon-tools" />
+          <i className="fas fa-pencil-ruler fa-3x" />
           <div className="services-content">
             <h5>made to measure</h5>
             <p>
@@ -26,7 +26,7 @@ const Services = () => (
           </div>
         </div>
         <div className="col-md-4 col-sm-6 services text-center">
-          <span className="icon icon-pricetags" />
+          <i className="fas fa-tv fa-3x" />
           <div className="services-content">
             <h5>multipurpose</h5>
             <p>
@@ -55,5 +55,22 @@ const ServicesWrapper = styled.section`
     color: #00aeda;
     font-size: 50px;
     padding-left: 15px;
+  }
+
+  i {
+    color: #00aeda;
+  }
+
+  h5 {
+    font-size: 14px;
+    color: #2d3033;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 22.4px;
+    color: #6c7279;
   }
 `;

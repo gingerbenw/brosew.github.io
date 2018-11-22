@@ -117,7 +117,8 @@ const SubmitButton = styled.button`
   -webkit-border-radius: 2px;
   border-radius: 2px;
   display: inline-block;
-  text-transform: uppercase;
+	text-transform: uppercase;
+	cursor: pointer;
 
   &:hover {
     background-color: #3d3d3d;
@@ -169,27 +170,6 @@ const ContactWrapper = styled.section`
       font-size: 15px;
       border: none;
       border-bottom: #e0e0e0 1px solid;
-    }
-
-    .submitBnt {
-      background: #3bc492;
-      color: #fff;
-      margin-top: 30px;
-      padding: 15px 30px 15px 30px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 5px;
-      border: 0;
-      -moz-border-radius: 2px;
-      -webkit-border-radius: 2px;
-      border-radius: 2px;
-      display: inline-block;
-      text-transform: uppercase;
-
-      &:hover {
-        background: #3d3d3d;
-        color: #fff;
-      }
     }
   }
 

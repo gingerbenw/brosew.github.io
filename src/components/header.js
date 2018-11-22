@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// Images
-import banner from '../images/banner.jpg';
-
 // Components
 import Menu from './elements/menu';
 import Hamburger from './elements/hamburger';
@@ -44,13 +41,13 @@ class Header extends React.Component {
   render() {
     const { mobile, scrolled, showNavigation } = this.state;
     return (
-      <BannerWrapper className="banner" role="banner">
+      <React.Fragment>
         <HeaderWrapper active={scrolled}>
           <div className="header-content clearfix">
             <a className="logo" href="/">
               Brosew
             </a>
-            {!mobile && (
+            {!mobile ? (
               <Navigation role="navigation" active={scrolled}>
                 <ul className="primary-nav mb-0">
                   <li>
@@ -67,71 +64,22 @@ class Header extends React.Component {
                   </li>
                 </ul>
               </Navigation>
+            ) : (
+              <Hamburger
+                clickHandler={this.toggleNavigation}
+                active={showNavigation}
+                scrolled={scrolled}
+              />
             )}
           </div>
         </HeaderWrapper>
         <Menu showNavigation={showNavigation} />
-        <div className="container">
-          <div className="col-xs-12">
-            <div className="banner-text text-center">
-              <h1>Dutch Canopies</h1>
-              <p>Expertly handcrafted in the Wiltshire countryside.</p>
-              <a href="#intro" className="btn btn-large">
-                Find out more
-              </a>
-            </div>
-          </div>
-        </div>
-        {mobile && (
-          // <NavToggle
-          //   clickHandler={this.toggleNavigation}
-					// 	showNavigation={showNavigation}
-					// 	scrolled={scrolled}
-          // />
-					<Hamburger 
-						clickHandler={this.toggleNavigation}
-						active={showNavigation}
-						scrolled={scrolled}
-					/>
-        )}
-      </BannerWrapper>
+      </React.Fragment>
     );
   }
 }
 
 export default Header;
-
-const BannerWrapper = styled.section`
-  background-image: url(${banner});
-  background-position: center top;
-  background-repeat: no-repeat;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  -webkit-background-size: cover;
-  background-size: cover;
-  min-height: 750px;
-
-  .banner-text {
-    padding-top: 32%;
-
-    h1 {
-      color: #fff;
-      font-family: 'Open Sans', Arial, sans-serif;
-      font-size: 65px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      margin-top: 30px;
-      margin-bottom: 80px;
-    }
-  }
-`;
 
 const HeaderWrapper = styled.header`
   position: fixed;

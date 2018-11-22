@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="footer-top section">
       <div className="container">
         <div className="row">
-          <div className="footer-col col-md-6">
+          <div className="col-md-6">
             <h5>Contact</h5>
             <p>
               <a href="tel:+44(0)7778701037">John | +44 (0) 7778 701 037</a>
@@ -38,10 +38,6 @@ const FooterWrapper = styled.footer`
     padding: 20px 0;
   }
 
-  .footer-col {
-    margin-bottom: 80px;
-  }
-
   h5 {
     color: #fff;
     margin-bottom: 20px;
@@ -55,7 +51,8 @@ const FooterWrapper = styled.footer`
     color: rgba(255, 255, 255, 0.5);
 
     &:hover {
-      color: #e84545;
+			color: #00aeda;
+			text-decoration: none;
     }
   }
 
@@ -71,11 +68,5 @@ const FooterWrapper = styled.footer`
       font-size: 21px;
       color: rgba(255, 255, 255, 0.25);
     }
-  }
-
-  .fa-heart {
-    color: #e84545;
-    font-size: 11px;
-    margin: 0 2px;
   }
 `;

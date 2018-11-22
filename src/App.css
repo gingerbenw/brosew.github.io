@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Merriweather|Open+Sans");
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
 
 p {
   font-size: 13px;
@@ -50,12 +50,11 @@ h5 {
   padding: 15px 40px;
 }
 
-
 /* ------------------------------------------------------------------------------
 	Global Styles
 -------------------------------------------------------------------------------*/
 a {
-  color: #e84545;
+  color: #00aeda;
 }
 a:hover,
 a:focus {
@@ -66,7 +65,7 @@ a:focus {
   transition: background-color, color, 0.3s;
 }
 body {
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 400;
   color: #6c7279;
 }
@@ -84,16 +83,13 @@ ul li {
 .no-padding {
   padding: 0;
 }
-.no-gutter [class*="col-"] {
+.no-gutter [class*='col-'] {
   padding-right: 0;
   padding-left: 0;
 }
 .space {
   margin-top: 60px;
 }
-
-
-
 
 /* ------------------------------------------------------------------------------
 	 Teams
@@ -164,7 +160,7 @@ ul li {
 }
 .testimonials h1 {
   color: #fff;
-  font: 23px "Merriweather";
+  font: 23px 'Merriweather';
   font-weight: 300;
 }
 .testimonials p {
