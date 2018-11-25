@@ -1,26 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
+import $ from 'jquery';
 
 // Images
 import banner from '../images/banner.jpg';
 
-const Banner = () => (
-  <BannerWrapper
-    className="banner d-flex align-items-center justify-content-center"
-    role="banner"
-  >
-    <div className="container">
-      <div className="col-xs-12">
-        <div className="banner-text text-center">
-          <h1>Dutch Canopies</h1>
-          <p>Expertly handcrafted in the Wiltshire countryside.</p>
-          <StyledLink href="#intro">Find out more</StyledLink>
-        </div>
-      </div>
-    </div>
-  </BannerWrapper>
-);
+class Banner extends React.Component {
+  navigate = (e) => {
+    e.preventDefault();
+    $('html, body').animate(
+      {
+        scrollTop: $('#intro').offset().top - 75,
+      },
+      500,
+    );
+  };
 
+  render() {
+    return (
+      <BannerWrapper
+        className="banner d-flex align-items-center justify-content-center"
+        role="banner"
+      >
+        <div className="container">
+          <div className="col-xs-12">
+            <div className="banner-text text-center">
+              <h1>Dutch Canopies</h1>
+              <p>Expertly handcrafted in the Wiltshire countryside.</p>
+              <StyledLink href="#intro" onClick={this.navigate}>
+                Find out more
+              </StyledLink>
+            </div>
+          </div>
+        </div>
+      </BannerWrapper>
+    );
+  }
+}
 export default Banner;
 
 const BannerWrapper = styled.section`
@@ -70,10 +86,10 @@ const StyledLink = styled.a`
   border-radius: 2px;
   display: inline-block;
   text-transform: uppercase;
-	cursor: pointer;
+  cursor: pointer;
 
   &:hover {
-		text-decoration: none;
+    text-decoration: none;
     background-color: #3d3d3d;
     color: #fff;
   }

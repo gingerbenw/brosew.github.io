@@ -1,68 +1,144 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // Images
-import work1 from "../images/work-1.jpg";
-import work2 from "../images/work-2.jpg";
-import work3 from "../images/work-3.jpg";
-import work4 from "../images/work-4.jpg";
+import work1 from '../images/work-1.jpg';
+import work2 from '../images/work-2.jpg';
+import work3 from '../images/work-3.jpg';
+import work4 from '../images/work-4.jpg';
 
-const Work = () => (
-  <WorkWrapper id="works" className="works section no-padding">
-    <div className="container-fluid">
-      <div className="row no-gutter">
-        <div className="col-lg-3 col-md-6 col-sm-6 work">
-          <a href={work1} className="work-box">
-            <img src={work1} alt="" />
-            <div className="overlay">
-              <div className="overlay-caption">
-                <h5>Yellow Striped</h5>
-                <p>Dutch Canopy</p>
-              </div>
+const images = [
+  {
+    src: work1,
+    title: 'Yellow Striped',
+    description: 'Dutch canopy',
+  },
+  {
+    src: work2,
+    title: 'Blue Striped',
+    description: 'Dutch canopy',
+  },
+  {
+    src: work3,
+    title: 'Retracted',
+    description: 'Dutch canopy',
+  },
+  {
+    src: work4,
+    title: 'Just a sample',
+    description: 'Of many available materials',
+  },
+];
+
+class Work extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedImage: work1,
+      isOpen: false,
+    };
+  }
+
+  handleShowImage = (e, selectedImage) => {
+    e.preventDefault();
+    this.toggleLightbox();
+    this.setState({ selectedImage });
+  };
+
+  toggleLightbox = () => this.setState({ isOpen: !this.state.isOpen });
+
+  render() {
+    const { isOpen, selectedImage } = this.state;
+    return (
+      <React.Fragment>
+        <WorkWrapper id="works" className="works section no-padding">
+          <div className="container-fluid">
+            <div className="row no-gutter">
+              {images &&
+                images.map((image) => (
+                  <WorkItem
+                    key={image.title}
+                    className="col-lg-3 col-md-6 col-sm-6 work"
+                  >
+                    <a
+                      href={image.src}
+                      className="work-box"
+                      onClick={(e) => this.handleShowImage(e, image.src)}
+                    >
+                      <img src={image.src} alt={image.description} />
+                      <div className="overlay">
+                        <div className="overlay-caption">
+                          <h5>{image.title}</h5>
+                          <p>{image.description}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </WorkItem>
+                ))}
             </div>
-          </a>
-        </div>
-        <div className="col-lg-3 col-md-6 col-sm-6 work">
-          <a href={work2} className="work-box">
-            <img src={work2} alt="" />
-            <div className="overlay">
-              <div className="overlay-caption">
-                <h5>Blue Striped</h5>
-                <p>Dutch Canopy</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div className="col-lg-3 col-md-6 col-sm-6 work">
-          <a href={work3} className="work-box">
-            <img src={work3} alt="" />
-            <div className="overlay">
-              <div className="overlay-caption">
-                <h5>Retracted</h5>
-                <p>Red Canopy</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div className="col-lg-3 col-md-6 col-sm-6 work">
-          <a href={work4} className="work-box">
-            <img src={work4} alt="" />
-            <div className="overlay">
-              <div className="overlay-caption">
-                <h5>Just a sample</h5>
-                <p>Of many available materials</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </WorkWrapper>
-);
+          </div>
+        </WorkWrapper>
+        <Lightbox isOpen={isOpen} onClick={this.toggleLightbox}>
+          <ImageWrapper>
+            {/* <CloseButton className="fas fa-times" /> */}
+            {selectedImage && <Image src={selectedImage} />}
+          </ImageWrapper>
+        </Lightbox>
+      </React.Fragment>
+    );
+  }
+}
 
 export default Work;
 
-const WorkWrapper = styled.section`
+const Lightbox = styled.div`
+  position: fixed;
+  z-index: 2000;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.3s ease;
+  opacity: ${(props) => (props.isOpen ? '1' : '0')};
+  pointer-events: ${(props) => (props.isOpen ? 'default' : 'none')};
+`;
+
+const CloseButton = styled.i`
+  font-size: 3rem;
+  color: #fff;
+  position: absolute;
+  top: -1.5rem;
+  right: -1rem;
+
+  animation: fadeIn;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+`;
+
+const Image = styled.img``;
+
+const WorkItem = styled.div`
   -moz-box-shadow: 0 0 0 1px #fff;
   -webkit-box-shadow: 0 0 0 1px #fff;
   box-shadow: 0 0 0 1px #fff;
@@ -73,6 +149,7 @@ const WorkWrapper = styled.section`
     width: 100%;
     height: 100%;
   }
+
   .overlay {
     background: rgba(0, 174, 218, 0.9);
     height: 100%;
@@ -96,6 +173,9 @@ const WorkWrapper = styled.section`
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+`;
+
+const WorkWrapper = styled.section`
   h5,
   p,
   img {
@@ -146,3 +226,18 @@ const WorkWrapper = styled.section`
     transform: translate3d(0, 0, 0);
   }
 `;
+
+// imgSrc={images[photoIndex]}
+// nextSrc={images[(photoIndex + 1) % images.length]}
+// prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+// onCloseRequest={() => this.setState({ isOpen: false })}
+// onMovePrevRequest={() =>
+// 	this.setState({
+// 		photoIndex: (photoIndex + images.length - 1) % images.length,
+// 	})
+// }
+// onMoveNextRequest={() =>
+// 	this.setState({
+// 		photoIndex: (photoIndex + 1) % images.length,
+// 	})
+// }

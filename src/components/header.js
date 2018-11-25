@@ -1,10 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import $ from 'jquery';
 
 // Components
-import Menu from './elements/menu';
+import Menu from './menu';
 import Hamburger from './elements/hamburger';
-// import Button from './elements/button';
+
+const menuItems = [
+  {
+    link: '#intro',
+    text: 'About',
+  },
+  {
+    link: '#services',
+    text: 'Services',
+  },
+  {
+    link: '#works',
+    text: 'Works',
+  },
+  {
+    link: '#contact',
+    text: 'Contact',
+  },
+];
 
 class Header extends React.Component {
   state = {
@@ -38,6 +57,15 @@ class Header extends React.Component {
   toggleNavigation = () =>
     this.setState({ showNavigation: !this.state.showNavigation });
 
+  navigate = (link) => {
+    $('html, body').animate(
+      {
+        scrollTop: $(link).offset().top - 75,
+      },
+      500,
+    );
+  };
+
   render() {
     const { mobile, scrolled, showNavigation } = this.state;
     return (
@@ -47,33 +75,35 @@ class Header extends React.Component {
             <a className="logo" href="/">
               Brosew
             </a>
-            {!mobile ? (
+            {!mobile && (
               <Navigation role="navigation" active={scrolled}>
                 <ul className="primary-nav mb-0">
-                  <li>
-                    <a href="#intro">About</a>
-                  </li>
-                  <li>
-                    <a href="#services">services</a>
-                  </li>
-                  <li>
-                    <a href="#works">Works</a>
-                  </li>
-                  <li>
-                    <a href="#contact">Contact</a>
-                  </li>
+                  {menuItems.map((item) => (
+                    <li key={item.text}>
+                      <a
+                        href={item.link}
+                        onClick={() => this.navigate(item.link)}
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </Navigation>
-            ) : (
-              <Hamburger
-                clickHandler={this.toggleNavigation}
-                active={showNavigation}
-                scrolled={scrolled}
-              />
             )}
           </div>
         </HeaderWrapper>
-        <Menu showNavigation={showNavigation} />
+        <Menu
+          showNavigation={showNavigation}
+          clickHandler={this.toggleNavigation}
+        />
+        {mobile && (
+          <Hamburger
+            clickHandler={this.toggleNavigation}
+            active={showNavigation}
+            scrolled={scrolled}
+          />
+        )}
       </React.Fragment>
     );
   }

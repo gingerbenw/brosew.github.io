@@ -44,7 +44,7 @@ class Contact extends React.Component {
       <ContactWrapper id="contact" className="section">
         <div className="container">
           <div className="row">
-            <div className="col-12 conForm">
+            <div className="col-12 col-md-8 offset-md-2 conForm">
               <h5>Get in touch</h5>
               <p>
                 We are more than happy to talk you through any potential
