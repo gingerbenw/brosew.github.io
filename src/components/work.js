@@ -110,27 +110,27 @@ const Lightbox = styled.div`
   pointer-events: ${(props) => (props.isOpen ? 'default' : 'none')};
 `;
 
-const CloseButton = styled.i`
-  font-size: 3rem;
-  color: #fff;
-  position: absolute;
-  top: -1.5rem;
-  right: -1rem;
+// const CloseButton = styled.i`
+//   font-size: 3rem;
+//   color: #fff;
+//   position: absolute;
+//   top: -1.5rem;
+//   right: -1rem;
 
-  animation: fadeIn;
+//   animation: fadeIn;
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
+//   @keyframes fadeIn {
+//     0% {
+//       opacity: 0;
+//     }
+//     50% {
+//       opacity: 0;
+//     }
+//     100% {
+//       opacity: 1;
+//     }
+//   }
+// `;
 
 const ImageWrapper = styled.div`
   position: relative;
