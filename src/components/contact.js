@@ -27,6 +27,11 @@ class Contact extends React.Component {
     e.preventDefault();
 		this.setState({ loading: true });
 
+		if (this.state.contact !== '') {
+			this.setState({ success: true, loading: false });
+			return false;
+		}
+
     // submit netlify form
     // TODO: Swap this out for a decent email service
     fetch('/', {
