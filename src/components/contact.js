@@ -14,6 +14,7 @@ class Contact extends React.Component {
       name: '',
       email: '',
       message: '',
+			contact: '', // honeypot field
       loading: false,
       success: false,
       error: null,
@@ -25,7 +26,7 @@ class Contact extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 		this.setState({ loading: true });
-		
+
     // submit netlify form
     // TODO: Swap this out for a decent email service
     fetch('/', {
@@ -38,7 +39,7 @@ class Contact extends React.Component {
   };
 
   render() {
-    const { name, email, message, success, error, loading } = this.state;
+    const { name, email, message, success, error, loading, contact } = this.state;
 
     return (
       <ContactWrapper id="contact" className="section">
@@ -52,6 +53,7 @@ class Contact extends React.Component {
               </p>
               <div id="message" />
               <form onSubmit={this.handleSubmit}>
+								<input type="hidden" name="contact" value={contact} onChange={this.handleChange} />
                 <input
                   name="name"
                   type="text"
