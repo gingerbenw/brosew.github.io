@@ -7,7 +7,7 @@ import Header from "./components/header";
 import Intro from "./components/intro";
 import Services from "./components/services";
 import Work from "./components/work";
-import Contact from "./components/contact";
+// import Contact from "./components/contact";
 import Footer from "./components/footer";
 
 // styling
@@ -32,7 +32,7 @@ class App extends Component {
         <Intro />
         <Services />
         <Work />
-				<Contact />
+				{/* <Contact /> */}
         <Footer />
       </div>
     );
