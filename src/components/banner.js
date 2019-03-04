@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import $ from 'jquery';
 
 // Images
-import banner from '../images/banner.jpg';
+import banner from '../images/banner3.jpg';
 
 class Banner extends React.Component {
   navigate = (e) => {

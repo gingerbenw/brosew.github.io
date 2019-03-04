@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Footer = () => (
-  <FooterWrapper className="footer">
+  <FooterWrapper className="footer" id="contact">
     <div className="footer-top section">
       <div className="container">
         <div className="row">
